@@ -76,7 +76,7 @@ public:
         int pos, value;
 
         cout << endl;
-        cout << "Enter Element Position To Update:- ";
+        cout << "Enter Element Position To Update :- ";
         cin >> pos;
 
         if (pos > 0 && pos <= num)
@@ -95,8 +95,7 @@ public:
 
     void positiveNegative()
     {
-        int pos = 0;
-        int neg = 0;
+        int pos = 0, neg = 0;
 
         for (int i = 0; i < num; i++)
         {
@@ -117,8 +116,7 @@ public:
 
     void evenOdd()
     {
-        int even = 0;
-        int odd = 0;
+        int even = 0, odd = 0;
 
         for (int i = 0; i < num; i++)
         {
@@ -228,91 +226,6 @@ public:
         readarray();
     }
 
-    void leftRotate()
-    {
-        int tempArr[20];
-
-        for (int i = 0; i < num; i++)
-        {
-            tempArr[i] = arr[i];
-        }
-
-        int first = tempArr[0];
-
-        for (int i = 0; i < num - 1; i++)
-        {
-            tempArr[i] = tempArr[i + 1];
-        }
-
-        tempArr[num - 1] = first;
-
-        cout << endl;
-        cout << "Left Rotated :- ";
-
-        for (int i = 0; i < num; i++)
-        {
-            cout << tempArr[i] << " ";
-        }
-
-        cout << endl;
-    }
-
-    void rightRotate()
-    {
-        int tempArr[20];
-
-        for (int i = 0; i < num; i++)
-        {
-            tempArr[i] = arr[i];
-        }
-
-        int last = tempArr[num - 1];
-
-        for (int i = num - 1; i > 0; i--)
-        {
-            tempArr[i] = tempArr[i - 1];
-        }
-
-        tempArr[0] = last;
-
-        cout << endl;
-        cout << "Right Rotated :- ";
-
-        for (int i = 0; i < num; i++)
-        {
-            cout << tempArr[i] << " ";
-        }
-
-        cout << endl;
-    }
-
-    void leaderElements()
-    {
-        cout << endl;
-        cout << "Leader Elements :- ";
-
-        for (int i = 0; i < num; i++)
-        {
-            bool isLeader = true;
-
-            for (int j = i + 1; j < num; j++)
-            {
-                if (arr[i] < arr[j])
-                {
-                    isLeader = false;
-                    break;
-                }
-            }
-
-            if (isLeader)
-            {
-                cout << arr[i] << " ";
-            }
-        }
-
-        cout << endl;
-    }
-
     void bubbleSort()
     {
         int tempArr[20];
@@ -336,9 +249,105 @@ public:
         }
 
         cout << endl;
-        cout << "Sorted Array :- ";
+        cout << "Sorted Array (Ascending) :- ";
 
         for (int i = 0; i < num; i++)
+        {
+            cout << tempArr[i] << " ";
+        }
+
+        cout << endl;
+        cout << "Sorted Array (Descending) :- ";
+
+        for (int i = num - 1; i >= 0; i--)
+        {
+            cout << tempArr[i] << " ";
+        }
+
+        cout << endl;
+    }
+
+    void insertionSort()
+    {
+        int tempArr[20];
+
+        for (int i = 0; i < num; i++)
+        {
+            tempArr[i] = arr[i];
+        }
+
+        for (int i = 1; i < num; i++)
+        {
+            int key = tempArr[i];
+            int j = i - 1;
+
+            while (j >= 0 && tempArr[j] > key)
+            {
+                tempArr[j + 1] = tempArr[j];
+                j--;
+            }
+
+            tempArr[j + 1] = key;
+        }
+
+        cout << endl;
+        cout << "Insertion Ascending :- ";
+
+        for (int i = 0; i < num; i++)
+        {
+            cout << tempArr[i] << " ";
+        }
+
+        cout << endl;
+        cout << "Insertion Descending :- ";
+
+        for (int i = num - 1; i >= 0; i--)
+        {
+            cout << tempArr[i] << " ";
+        }
+
+        cout << endl;
+    }
+
+    void selectionSort()
+    {
+        int tempArr[20];
+
+        for (int i = 0; i < num; i++)
+        {
+            tempArr[i] = arr[i];
+        }
+
+        for (int i = 0; i < num - 1; i++)
+        {
+            int minIndex = i;
+
+            for (int j = i + 1; j < num; j++)
+            {
+                if (tempArr[j] < tempArr[minIndex])
+                {
+                    minIndex = j;
+                }
+            }
+
+            // swap
+            int temp = tempArr[i];
+            tempArr[i] = tempArr[minIndex];
+            tempArr[minIndex] = temp;
+        }
+
+        cout << endl;
+        cout << "Selection Ascending :- ";
+
+        for (int i = 0; i < num; i++)
+        {
+            cout << tempArr[i] << " ";
+        }
+
+        cout << endl;
+        cout << "Selection Descending :- ";
+
+        for (int i = num - 1; i >= 0; i--)
         {
             cout << tempArr[i] << " ";
         }
@@ -350,29 +359,30 @@ public:
 int main()
 {
     ArrayManager obj;
+    int choice;
 
     while (true)
     {
         cout << endl;
         cout << "========= MENU =========" << endl;
 
-        cout << "1.Create" << endl;
-        cout << "2.Read" << endl;
-        cout << "3.Delete" << endl;
-        cout << "4.Update" << endl;
-        cout << "5.Positive/Negative" << endl;
-        cout << "6.Even/Odd" << endl;
-        cout << "7.Min-Max" << endl;
-        cout << "8.Sum/Average" << endl;
-        cout << "9.Reverse" << endl;
-        cout << "10.Remove Duplicates" << endl;
-        cout << "11.Left Rotate" << endl;
-        cout << "12.Right Rotate" << endl;
-        cout << "13.Leader Elements" << endl;
-        cout << "14.Bubble Sort" << endl;
-        cout << "0.Exit" << endl;
-
-        int choice;
+        cout << "1. Create" << endl;
+        cout << "2. Read" << endl;
+        cout << "3. Delete" << endl;
+        cout << "4. Update" << endl;
+        cout << "5. Positive/Negative" << endl;
+        cout << "6. Even/Odd" << endl;
+        cout << "7. Min-Max" << endl;
+        cout << "8. Sum/Average" << endl;
+        cout << "9. Reverse" << endl;
+        cout << "10. Remove Duplicates" << endl;
+        cout << "11. Left Rotate" << endl;
+        cout << "12. Right Rotate" << endl;
+        cout << "13. Leader Elements" << endl;
+        cout << "14. Bubble Sort" << endl;
+        cout << "15. Insertion Sort" << endl;
+        cout << "16. selectio sort" << endl;
+        cout << "0. Exit" << endl;
 
         cout << endl;
         cout << "Enter Choice :- ";
@@ -381,100 +391,65 @@ int main()
         switch (choice)
         {
         case 1:
-        {
             obj.creatarray();
             break;
-        }
 
         case 2:
-        {
             obj.readarray();
             break;
-        }
 
         case 3:
-        {
             obj.deletearray();
             break;
-        }
 
         case 4:
-        {
             obj.updatearray();
             break;
-        }
 
         case 5:
-        {
             obj.positiveNegative();
             break;
-        }
 
         case 6:
-        {
             obj.evenOdd();
             break;
-        }
 
         case 7:
-        {
             obj.minMax();
             break;
-        }
 
         case 8:
-        {
             obj.sumAverage();
             break;
-        }
 
         case 9:
-        {
             obj.reverseArray();
             break;
-        }
 
         case 10:
-        {
             obj.removeDuplicates();
             break;
-        }
-
-        case 11:
-        {
-            obj.leftRotate();
-            break;
-        }
-
-        case 12:
-        {
-            obj.rightRotate();
-            break;
-        }
-
-        case 13:
-        {
-            obj.leaderElements();
-            break;
-        }
 
         case 14:
-        {
             obj.bubbleSort();
             break;
-        }
+
+        case 15:
+            obj.insertionSort();
+            break;
+        case 16:
+
+            obj.selectionSort();
+            break;
 
         case 0:
-        {
-            cout << "Exit Successfully...!!";
+            cout << endl;
+            cout << "Exit Successfully...!!" << endl;
             return 0;
-        }
 
         default:
-        {
             cout << endl;
             cout << "Invalid Choice" << endl;
-        }
         }
     }
 }
