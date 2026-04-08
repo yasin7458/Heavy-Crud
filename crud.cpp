@@ -381,7 +381,7 @@ int main()
         cout << "13. Leader Elements" << endl;
         cout << "14. Bubble Sort" << endl;
         cout << "15. Insertion Sort" << endl;
-        cout << "16. selectio sort" << endl;
+        cout << "16. selection sort" << endl;
         cout << "0. Exit" << endl;
 
         cout << endl;
